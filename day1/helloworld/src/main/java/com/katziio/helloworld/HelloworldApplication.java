@@ -1,13 +1,13 @@
-package com.katziio.day1;
+package com.katziio.helloworld;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SimpleHelloWorldApiApplication {
+public class HelloworldApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SimpleHelloWorldApiApplication.class, args);
+		SpringApplication.run(HelloworldApplication.class, args);
 	}
 
 }

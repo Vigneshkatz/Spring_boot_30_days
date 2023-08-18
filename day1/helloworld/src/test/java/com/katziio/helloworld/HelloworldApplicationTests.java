@@ -1,10 +1,10 @@
-package com.katziio.day1;
+package com.katziio.helloworld;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SimpleHelloWorldApiApplicationTests {
+class HelloworldApplicationTests {
 
 	@Test
 	void contextLoads() {
