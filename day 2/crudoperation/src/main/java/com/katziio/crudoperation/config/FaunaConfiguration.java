@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import java.net.MalformedURLException;
 
 @Configuration
-public class FaunadbConfiguration {
+public class FaunaConfiguration {
     @Value("https://db.${fauna.region}.fauna.com/")
     private String faunaUrl;
 
