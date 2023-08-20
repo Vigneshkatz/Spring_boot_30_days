@@ -9,7 +9,8 @@ import java.net.MalformedURLException;
 
 @Configuration
 public class FaunaConfiguration {
-    @Value("https://db.${fauna.region}.fauna.com/")
+
+    @Value("https://dashboard.fauna.com/db/us/askmanager_dbt")
     private String faunaUrl;
 
     @Value("${fauna.secret}")

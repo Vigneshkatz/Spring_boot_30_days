@@ -20,7 +20,9 @@ public class Task {
     private  boolean isCompleted;
 
     @FaunaConstructor
-    public Task(@FaunaField("id")String id, @FaunaField("name")String name, @FaunaField("description")String description, @FaunaField("isCompleted")boolean isCompleted) {
+    public Task(@FaunaField("id")String id, @FaunaField("name")String name,
+                @FaunaField("description")String description,
+                @FaunaField("isCompleted")boolean isCompleted) {
         this.id = id;
         this.name = name;
         this.description = description;
