@@ -14,12 +14,13 @@ public class TaskService extends RuntimeException{
     private final TaskRepository taskRepository;
 
     @Autowired
-    public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
+//    public TaskService(TaskRepository taskRepository) {
+//        this.taskRepository = taskRepository;
+//    }
 
     @Transactional(readOnly = true)
-    public List<Task> getTasks() {
+    public List<Task> getTasks()
+    {
         return taskRepository.findAll();
     }
 }
