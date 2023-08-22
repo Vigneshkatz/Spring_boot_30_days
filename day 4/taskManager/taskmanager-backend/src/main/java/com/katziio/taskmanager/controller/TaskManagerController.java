@@ -1,5 +1,8 @@
 package com.katziio.taskmanager.controller;
 
+import com.katziio.taskmanager.entity.Task;
+import com.katziio.taskmanager.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/taskManager")
 public class TaskManagerController {
 
+    @Autowired
     private UserService userService;
+    @Autowired
     private TaskService taskService;
 
     //    add user
@@ -24,8 +29,8 @@ public class TaskManagerController {
     }
 
     //    delete User
-    @DeleteMapping("/deleteUser")
-    public ResponseEntity<String> addUser(@RequestParam Long id) {
+    @DeleteMapping("/deleteUser/{{id}}")
+    public ResponseEntity<String> addUser(@PathVariable Long id) {
         boolean status = userService.deleteUser(id);
         if (status) {
             return new ResponseEntity<String>(HttpStatus.OK);
@@ -36,27 +41,21 @@ public class TaskManagerController {
     }
 
     //    Add tasks
-    @PostMapping("/addTask")
-    public ResponseEntity<String> addUser(@RequestBody Task task) {
-        boolean status = userService.addTask(task);
-        if (status) {
-            return new ResponseEntity<String>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
-
-        }
+    @PostMapping("/{user_id}/tasks")
+    public ResponseEntity<String> addTaskToUser(@PathVariable Long user_id, @RequestBody Task task) {
+        boolean status = userService.addTaskToUser(user_id, task);
+        return status ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     //    delete Task
-    @DeleteMapping("/deleteTask")
-    public ResponseEntity<String> addUser(@RequestParam Long task_id, @RequestBody String task_description) {
-        boolean status = userService.deleteTask(task_id,task_description);
-        if (status) {
-            return new ResponseEntity<String>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
-
-        }
+    @DeleteMapping("/{user_id}/tasks/{task_id}")
+    public ResponseEntity<String> deleteTaskForUser(
+            @PathVariable Long user_id,
+            @PathVariable Long task_id,
+            @RequestParam String task_description
+    ) {
+        boolean status = userService.deleteTaskForUser(user_id, task_id, task_description);
+        return status ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
 }
