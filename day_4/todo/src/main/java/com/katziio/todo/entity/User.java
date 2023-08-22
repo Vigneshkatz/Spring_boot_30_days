@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class User {
     private String password;
 
     @OneToMany
-    private List<Todo> todoList;
+    private List<Todo> todoList = new ArrayList<>();
 
 
     public User(){

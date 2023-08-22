@@ -2,12 +2,21 @@ package com.katziio.todo;
 
 import com.katziio.todo.entity.Todo;
 import com.katziio.todo.entity.User;
+import com.katziio.todo.repository.TodoRepository;
+import com.katziio.todo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class TodoAppApplication  implements CommandLineRunner {
+
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private TodoRepository todoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TodoAppApplication.class, args);
@@ -24,6 +33,10 @@ public class TodoAppApplication  implements CommandLineRunner {
 		todo.setId(1L);
 		todo.setContent("Be A developer Brother");
 		user.getTodoList().add(todo);
+
+		todoRepository.save(todo);
+
+		userRepository.save(user);
 
 	}
 }
