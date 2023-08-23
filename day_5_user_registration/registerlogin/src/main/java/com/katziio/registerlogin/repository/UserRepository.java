@@ -1,0 +1,11 @@
+package com.katziio.registerlogin.repository;
+
+
+import com.katziio.registerlogin.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User,Long> {
+
+}
