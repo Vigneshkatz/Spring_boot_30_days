@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.NoSuchElementException;
-
 @RestController
 @RequestMapping("/user")
 public class UserRegistrationController {
@@ -23,9 +21,15 @@ public class UserRegistrationController {
     }
 
     @GetMapping("/login")
-    public User login(@RequestBody User user)
+    public ResponseEntity<String> login(@RequestParam String userName, String password)
     {
-        userRepository.findById(user.getId()).orElseThrow(NoSuchElementException::new);
-        return  user;
+        User user = userRepository.findByUsername(userName);
+        if(user!=null && user.getPassword().equals(password))
+        {
+            return ResponseEntity.ok("Login successful");
+        }
+        else {
+            return ResponseEntity.badRequest().body("Login failed");
+        }
     }
 }
