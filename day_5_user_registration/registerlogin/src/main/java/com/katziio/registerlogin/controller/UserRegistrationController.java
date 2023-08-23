@@ -21,9 +21,9 @@ public class UserRegistrationController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<String> login(@RequestParam String userName, String password)
+    public ResponseEntity<String> login(@RequestParam String userName, @RequestParam String password)
     {
-        User user = userRepository.findByUsername(userName);
+        User user = userRepository.findByUserName(userName);
         if(user!=null && user.getPassword().equals(password))
         {
             return ResponseEntity.ok("Login successful");
