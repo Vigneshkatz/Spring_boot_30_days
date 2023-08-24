@@ -28,14 +28,14 @@ public class PostController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
     @GetMapping("/getPosts")
     public List<Post> getPosts() {
-       return this.postService.getAllPosts();
+        return this.postService.getAllPosts();
     }
 
     @GetMapping("/getPost/{postId}")
-    public PostDTO getPostById(@PathVariable Long postId)
-    {
+    public PostDTO getPostById(@PathVariable Long postId) {
         return this.postService.getPostById(postId);
     }
 

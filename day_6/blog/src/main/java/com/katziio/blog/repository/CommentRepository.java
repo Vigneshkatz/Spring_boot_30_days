@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CommentRepository extends JpaRepository<Comment,Long> {
+public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query("SELECT new com.katziio.blog.dto.CommentDTO(c.commenterName, c.content) FROM Post p JOIN p.comments c WHERE p.id = :postId")
     List<CommentDTO> findCommentByPostId(@Param("postId") Long postId);
 

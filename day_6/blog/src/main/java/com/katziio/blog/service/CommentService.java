@@ -11,6 +11,7 @@ import java.util.List;
 public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
+
     public List<CommentDTO> getCommentByPostID(Long postId) {
         return this.commentRepository.findCommentByPostId(postId);
     }

@@ -1,17 +1,13 @@
 package com.katziio.blog.service;
 
 import com.katziio.blog.dto.PostDTO;
-import com.katziio.blog.entity.Comment;
 import com.katziio.blog.entity.Post;
 import com.katziio.blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class PostService {
@@ -26,7 +22,7 @@ public class PostService {
 
     public List<Post> getAllPosts() {
         boolean isPostAdded = true;
-        if(isSamplePost) {
+        if (isSamplePost) {
             Calendar calendar = Calendar.getInstance();
 
             Post post = new Post(
@@ -43,7 +39,7 @@ public class PostService {
             );
             isPostAdded = this.addPost(post);
         }
-        this.isSamplePost=false;
+        this.isSamplePost = false;
         if (isPostAdded) {
             return this.postRepository.findAll();
         } else {

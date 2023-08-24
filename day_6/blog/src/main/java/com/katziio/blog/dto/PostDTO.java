@@ -7,11 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class PostDTO {
     private Long id;
@@ -23,7 +22,6 @@ public class PostDTO {
     private Date is_published;
     private Date created_at;
     private Date updated_at;
-    private List<CommentDTO> comments;
 
     public PostDTO(Long id, String title, String excerpt, String content, String author, Date published_at, Date is_published, Date created_at, Date updated_at) {
         this.id = id;

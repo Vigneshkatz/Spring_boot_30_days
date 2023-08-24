@@ -6,21 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown=true)
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class CommentDTO {
-    private Long id;
-    private String commenterName;
-    private String content;
-
-    public CommentDTO(String commenterName,String content)
-    {
-        this.commenterName=commenterName;
-        this.content=content;
-    }
-
+@AllArgsConstructor
+public class PostDetailedDTO {
+    private PostDTO postDTO;
+    private List<CommentDTO> commentDTO;
 }
