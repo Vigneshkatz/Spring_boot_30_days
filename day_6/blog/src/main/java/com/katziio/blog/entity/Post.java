@@ -15,7 +15,6 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "post_id")
     private Long id;
     private String title;
     private String excerpt;
@@ -25,6 +24,7 @@ public class Post {
     private Date is_published;
     private Date created_at;
     private Date updated_at;
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Comment.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_post_id", referencedColumnName = "id")
     private List<Comment> comments;
 }

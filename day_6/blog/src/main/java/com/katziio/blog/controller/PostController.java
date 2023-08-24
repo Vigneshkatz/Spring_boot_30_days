@@ -1,17 +1,14 @@
 package com.katziio.blog.controller;
 
 
-import com.katziio.blog.entity.Comment;
+import com.katziio.blog.dto.PostDTO;
 import com.katziio.blog.entity.Post;
-import com.katziio.blog.service.CommentService;
 import com.katziio.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,7 +17,6 @@ public class PostController {
 
     @Autowired
     private PostService postService;
-
 
     @PostMapping("/addPost")
     public ResponseEntity<Post> addPost(@RequestBody Post post) {
@@ -37,5 +33,10 @@ public class PostController {
        return this.postService.getAllPosts();
     }
 
+    @GetMapping("/getPost/{postId}")
+    public PostDTO getPostById(@PathVariable Long postId)
+    {
+        return this.postService.getPostById(postId);
+    }
 
 }

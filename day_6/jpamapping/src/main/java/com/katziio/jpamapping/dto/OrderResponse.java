@@ -18,7 +18,6 @@ public class OrderResponse {
 
     private String CustomerName;
 
-
     public OrderResponse(String productName, String customerName) {
         this.productName = productName;
         CustomerName = customerName;

@@ -22,8 +22,4 @@ public class Comment {
     @Column(name = "comment_content")
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_post_id")
-    private Post post;
-
 }

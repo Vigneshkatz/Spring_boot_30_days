@@ -1,5 +1,6 @@
 package com.katziio.blog.service;
 
+import com.katziio.blog.dto.PostDTO;
 import com.katziio.blog.entity.Comment;
 import com.katziio.blog.entity.Post;
 import com.katziio.blog.repository.PostRepository;
@@ -19,7 +20,6 @@ public class PostService {
     private boolean isSamplePost = true;
 
     public boolean addPost(Post post) {
-
         postRepository.save(post);
         return true;
     }
@@ -51,4 +51,7 @@ public class PostService {
         }
     }
 
+    public PostDTO getPostById(Long postId) {
+        return this.postRepository.findPostById(postId);
+    }
 }
