@@ -1,6 +1,7 @@
 package com.katziio.blog.service;
 
 import com.katziio.blog.dto.PostDTO;
+import com.katziio.blog.entity.Comment;
 import com.katziio.blog.entity.Post;
 import com.katziio.blog.repository.CommentRepository;
 import com.katziio.blog.repository.PostRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -58,6 +60,14 @@ public class PostService {
     public PostDTO deletePostById(Long postId) {
         PostDTO postDTO = this.postRepository.findPostById(postId);
         this.postRepository.deleteById(postId);
+        Optional<Post> optionalPost = this.postRepository.findById(postId);
+        if (optionalPost.isPresent()) {
+            Post post = optionalPost.get();
+            List<Comment> comments = post.getComments();
+            this.commentRepository.deleteAll(comments);
+
+            this.postRepository.deleteById(postId);
+        }
         return postDTO;
     }
 }
