@@ -3,7 +3,10 @@ package com.katziio.blog.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "posts")
@@ -12,6 +15,7 @@ import java.util.Date;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "post_id")
     private Long id;
     private String title;
     private String excerpt;
@@ -21,4 +25,7 @@ public class Post {
     private Date is_published;
     private Date created_at;
     private Date updated_at;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_post_id",referencedColumnName = "post_id")
+    private List<Comment> comments;
 }

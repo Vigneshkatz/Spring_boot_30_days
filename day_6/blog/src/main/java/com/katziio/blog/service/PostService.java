@@ -1,12 +1,16 @@
 package com.katziio.blog.service;
 
+import com.katziio.blog.entity.Comment;
 import com.katziio.blog.entity.Post;
 import com.katziio.blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class PostService {
@@ -15,6 +19,7 @@ public class PostService {
     private boolean isSamplePost = true;
 
     public boolean addPost(Post post) {
+
         postRepository.save(post);
         return true;
     }
@@ -33,7 +38,8 @@ public class PostService {
                     calendar.getTime(),
                     calendar.getTime(),
                     calendar.getTime(),
-                    calendar.getTime()
+                    calendar.getTime(),
+                    null
             );
 
 
@@ -46,4 +52,14 @@ public class PostService {
             return null;
         }
     }
+
+    public Post findPostById(Long postId) {
+        return this.postRepository.findById(postId).orElseThrow(NoSuchElementException::new);
+    }
+
+    public void savePost(Post post) {
+        this.postRepository.save(post);
+    }
+
+
 }

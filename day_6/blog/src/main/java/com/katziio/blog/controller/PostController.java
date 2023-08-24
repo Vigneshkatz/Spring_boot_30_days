@@ -1,7 +1,9 @@
 package com.katziio.blog.controller;
 
 
+import com.katziio.blog.entity.Comment;
 import com.katziio.blog.entity.Post;
+import com.katziio.blog.service.CommentService;
 import com.katziio.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+    @Autowired
+    private CommentService commentService;
 
     @PostMapping("/addPost")
     public ResponseEntity<Post> addPost(@RequestBody Post post) {
@@ -33,5 +37,6 @@ public class PostController {
     public List<Post> getPosts() {
        return this.postService.getAllPosts();
     }
+
 
 }
