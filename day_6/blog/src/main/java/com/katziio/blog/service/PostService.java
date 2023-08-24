@@ -2,6 +2,7 @@ package com.katziio.blog.service;
 
 import com.katziio.blog.dto.PostDTO;
 import com.katziio.blog.entity.Post;
+import com.katziio.blog.repository.CommentRepository;
 import com.katziio.blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
     private boolean isSamplePost = true;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     public boolean addPost(Post post) {
         postRepository.save(post);
@@ -49,5 +53,11 @@ public class PostService {
 
     public PostDTO getPostById(Long postId) {
         return this.postRepository.findPostById(postId);
+    }
+
+    public PostDTO deletePostById(Long postId) {
+        PostDTO postDTO = this.postRepository.findPostById(postId);
+        this.postRepository.deleteById(postId);
+        return postDTO;
     }
 }
