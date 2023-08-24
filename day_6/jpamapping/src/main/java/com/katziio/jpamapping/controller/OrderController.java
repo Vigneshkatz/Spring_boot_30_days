@@ -2,6 +2,7 @@ package com.katziio.jpamapping.controller;
 
 
 import com.katziio.jpamapping.dto.OrderRequest;
+import com.katziio.jpamapping.dto.OrderResponse;
 import com.katziio.jpamapping.entity.Customer;
 import com.katziio.jpamapping.repository.CustomerRepository;
 import com.katziio.jpamapping.repository.ProductRepository;
@@ -33,4 +34,8 @@ public class OrderController {
         return this.customerRepository.findAll();
     }
 
+    @GetMapping("/getOrderDetails")
+    public List<OrderResponse> getOrderDetails(){
+        return this.productRepository.findOrderDetails();
+    }
 }
