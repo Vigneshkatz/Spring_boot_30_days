@@ -6,12 +6,13 @@ import com.katziio.blog.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
-    public boolean addPost(Comment comment) {
-        commentRepository.save(comment);
-        return true;
+    public List<Comment> getAllComments(Long postId) {
+        return this.commentRepository.findAll();
     }
 }

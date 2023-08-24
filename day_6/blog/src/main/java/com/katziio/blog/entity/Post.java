@@ -25,7 +25,6 @@ public class Post {
     private Date is_published;
     private Date created_at;
     private Date updated_at;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_post_id",referencedColumnName = "post_id")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
 }

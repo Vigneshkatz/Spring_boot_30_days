@@ -20,8 +20,7 @@ public class PostController {
 
     @Autowired
     private PostService postService;
-    @Autowired
-    private CommentService commentService;
+
 
     @PostMapping("/addPost")
     public ResponseEntity<Post> addPost(@RequestBody Post post) {

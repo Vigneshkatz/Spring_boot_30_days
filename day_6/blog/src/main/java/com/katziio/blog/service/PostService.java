@@ -41,8 +41,6 @@ public class PostService {
                     calendar.getTime(),
                     null
             );
-
-
             isPostAdded = this.addPost(post);
         }
         this.isSamplePost=false;
@@ -52,14 +50,5 @@ public class PostService {
             return null;
         }
     }
-
-    public Post findPostById(Long postId) {
-        return this.postRepository.findById(postId).orElseThrow(NoSuchElementException::new);
-    }
-
-    public void savePost(Post post) {
-        this.postRepository.save(post);
-    }
-
 
 }
