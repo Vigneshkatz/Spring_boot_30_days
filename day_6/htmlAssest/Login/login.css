@@ -24,6 +24,10 @@
     align-items: center;
     flex-direction: column;
 }
+.login_container .form_header{
+    margin:1rem auto;
+    width: fit-content;
+}
 
 .login_container .login_form{
     margin: auto;
@@ -40,7 +44,7 @@
 
 }
 
-.login_form input[type="text"],
+.login_form input[type="email"],
 input[type="password"]{
     border: 1px solid grey;
     border-radius: 0.25rem;
