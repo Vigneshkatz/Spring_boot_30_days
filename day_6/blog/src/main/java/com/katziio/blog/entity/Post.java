@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "posts")
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
