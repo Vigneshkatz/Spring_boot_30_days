@@ -19,5 +19,12 @@ public class CommentController {
         return this.commentService.getCommentByPostID(postId);
     }
 
+    @DeleteMapping("/Comment/{commentId}")
+    public CommentDTO deleteComment(@PathVariable Long commentId )
+    {
+        return this.commentService.deleteCommentById(commentId);
+    }
+
+
 
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CommentService {
@@ -18,5 +19,13 @@ public class CommentService {
         return this.commentRepository.findCommentByPostId(postId);
     }
 
-
+    public CommentDTO deleteCommentById(Long commentId) {
+        Optional<Comment> optionalComment = this.commentRepository.findById(commentId);
+        if(optionalComment.isPresent())
+        {
+            this.commentRepository.deleteById(commentId);
+            return new CommentDTO(optionalComment.get());
+        }
+        return null;
+    }
 }
