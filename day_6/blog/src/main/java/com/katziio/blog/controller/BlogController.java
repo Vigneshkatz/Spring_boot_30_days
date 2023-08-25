@@ -1,12 +1,11 @@
 package com.katziio.blog.controller;
 
+import com.katziio.blog.dto.CommentDTO;
 import com.katziio.blog.dto.PostDetailedDTO;
+import com.katziio.blog.entity.Comment;
 import com.katziio.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/blogApi")
@@ -17,5 +16,12 @@ public class BlogController {
     @GetMapping("/postDetail/{postId}")
     public PostDetailedDTO getPostDetail(@PathVariable Long postId) {
         return this.blogService.getPostDetail(postId);
+    }
+
+    @PutMapping("/{postId}/Comment/{commentId}")
+    public CommentDTO updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestBody Comment comment) {
+
+        return this.blogService.updateComment(postId, comment, commentId);
+
     }
 }
