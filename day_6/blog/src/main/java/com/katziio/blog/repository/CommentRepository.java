@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    @Query("SELECT new com.katziio.blog.dto.CommentDTO(c.commenterName, c.content) FROM Post p JOIN p.comments c WHERE p.id = :postId")
+    @Query("SELECT new com.katziio.blog.dto.CommentDTO(c.name, c.comment,c.email,c.createdAt,c.updatedAt) FROM Post p JOIN p.comments c WHERE p.id = :postId")
     List<CommentDTO> findCommentByPostId(@Param("postId") Long postId);
 
 }

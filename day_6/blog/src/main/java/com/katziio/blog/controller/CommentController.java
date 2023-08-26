@@ -19,6 +19,11 @@ public class CommentController {
         return this.commentService.getCommentByPostID(postId);
     }
 
+    @PostMapping("/{postId}/addComments")
+    public CommentDTO getComments(@RequestBody Comment comment,@PathVariable Long postId) {
+        return this.commentService.addComment(postId,comment);
+    }
+
     @DeleteMapping("/Comment/{commentId}")
     public CommentDTO deleteComment(@PathVariable Long commentId )
     {

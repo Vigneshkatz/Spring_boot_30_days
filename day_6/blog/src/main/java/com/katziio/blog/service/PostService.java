@@ -3,8 +3,10 @@ package com.katziio.blog.service;
 import com.katziio.blog.dto.PostDTO;
 import com.katziio.blog.entity.Comment;
 import com.katziio.blog.entity.Post;
+import com.katziio.blog.entity.User;
 import com.katziio.blog.repository.CommentRepository;
 import com.katziio.blog.repository.PostRepository;
+import com.katziio.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,41 +18,26 @@ import java.util.Optional;
 public class PostService {
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private UserRepository userRepository;
     private boolean isSamplePost = true;
 
     @Autowired
     private CommentRepository commentRepository;
 
-    public boolean addPost(Post post) {
-        postRepository.save(post);
-        return true;
+    public boolean addPost(Long userId, Post post) {
+        Optional<User> userOptional = this.userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            userOptional.get().getPosts().add(post);
+            this.userRepository.save(userOptional.get());
+            return true;
+
+        }
+        return false;
     }
 
     public List<Post> getAllPosts() {
-        boolean isPostAdded = true;
-        if (isSamplePost) {
-            Calendar calendar = Calendar.getInstance();
-
-            Post post = new Post(
-                    null,
-                    "Sample Post Title",
-                    "Excerpt of the sample post",
-                    "Content of the sample post",
-                    "John Doe",
-                    calendar.getTime(),
-                    calendar.getTime(),
-                    calendar.getTime(),
-                    calendar.getTime(),
-                    null
-            );
-            isPostAdded = this.addPost(post);
-        }
-        this.isSamplePost = false;
-        if (isPostAdded) {
-            return this.postRepository.findAll();
-        } else {
-            return null;
-        }
+        return this.postRepository.findAll();
     }
 
     public PostDTO getPostById(Long postId) {

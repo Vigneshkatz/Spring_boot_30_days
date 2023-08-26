@@ -10,6 +10,7 @@ import com.katziio.blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,8 @@ public class BlogService {
             Post post = optionalPost.get();
             for (Comment comments : post.getComments()) {
                 if (comments.getId() == commentId) {
-                    comments.setContent(comment.getContent());
+                    comments.setComment(comment.getComment());
+                    comments.setUpdatedAt(Calendar.getInstance().getTime());
                 }
             }
             this.postRepository.save(post);

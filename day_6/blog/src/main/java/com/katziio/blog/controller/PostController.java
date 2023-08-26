@@ -18,10 +18,9 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @PostMapping("/addPost")
-    public ResponseEntity<Post> addPost(@RequestBody Post post) {
-        boolean isPostAdded = postService.addPost(post);
-
+    @PostMapping("{userId}/addPost")
+    public ResponseEntity<Post> addPost(@PathVariable Long userId,@RequestBody Post post) {
+        boolean isPostAdded = postService.addPost(userId,post);
         if (isPostAdded) {
             return ResponseEntity.ok(post);
         } else {

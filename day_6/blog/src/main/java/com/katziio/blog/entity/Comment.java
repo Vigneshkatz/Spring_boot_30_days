@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -13,15 +15,14 @@ import lombok.ToString;
 @Table(name = "comments")
 @ToString
 public class Comment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "commenter_name")
-    private String commenterName;
-
+    private String name;
     @Column(name = "comment_content")
-    private String content;
-
+    private String comment;
+    private Date createdAt;
+    private Date updatedAt;
+    @Column(name = "commenter_email")
+    private String email;
 }
