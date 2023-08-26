@@ -3,15 +3,12 @@ package com.katziio.blog.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.katziio.blog.entity.Comment;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.Calendar;
 import java.util.Date;
-
 
 @Data
 @AllArgsConstructor

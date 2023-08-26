@@ -16,6 +16,7 @@ import lombok.ToString;
 @ToString
 public class Product {
     @Id
+    @GeneratedValue(strategy = "GenerationType.AUTO")
     private Long pid;
 
     private String productName;
