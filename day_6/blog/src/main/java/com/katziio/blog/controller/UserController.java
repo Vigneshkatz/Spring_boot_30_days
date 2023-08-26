@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/User")
+@CrossOrigin("*")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -23,6 +24,12 @@ public class UserController {
     public List<User> getAllUser()
     {
         return this.userService.getAllUser();
+    }
+
+    @GetMapping("/getUser")
+    public UserDTO getUserByEmailPassword(@RequestParam String email,@RequestParam String password)
+    {
+        return this.userService.getUserByEmailPassword(email,password);
     }
     @GetMapping("/{userId}")
     public UserDTO getUserById(@PathVariable Long userId)

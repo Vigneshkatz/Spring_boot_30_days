@@ -58,4 +58,13 @@ public class UserService {
         }
         return null;
     }
+
+    public UserDTO getUserByEmailPassword(String email, String password) {
+        User user = this.userRepository.findUserByEmailPassword(email, password);
+        if (user!=null) {
+            return new UserDTO(user);
+        } else {
+            return null;
+        }
+    }
 }

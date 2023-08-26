@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/blogApi")
+@CrossOrigin("*")
 public class BlogController {
     @Autowired
     private BlogService blogService;

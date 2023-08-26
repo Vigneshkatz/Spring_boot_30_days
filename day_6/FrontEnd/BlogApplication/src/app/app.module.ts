@@ -9,6 +9,7 @@ import { PostsComponent } from './components/posts/posts.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    [RouterModule.forRoot(routes)]
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
   providers: [],

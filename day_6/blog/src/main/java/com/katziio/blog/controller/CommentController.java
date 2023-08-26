@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/blogApi")
+@CrossOrigin("*")
 public class CommentController {
     @Autowired
     private CommentService commentService;
