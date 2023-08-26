@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  constructor(private service: LoginService) { }
+  fetchFormValue(user_email: string, user_password: string): void {
+    this.service.login(user_email, user_password);
+  }
 }

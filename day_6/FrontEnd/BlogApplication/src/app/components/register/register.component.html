@@ -22,10 +22,11 @@
     <main id="main">
         <div class="user_registration_container">
             <h2 class="form_header">User Registration</h2>
-            <form action="" class="user_registration_form">
-                <input type="text" id="user_name" placeholder="Enter User name">
-                <input type="email" id="user_email" placeholder="Enter email" required>
-                <input type="password" id="user_password" placeholder="Enter password" required>
+            <form class="user_registration_form"
+                (ngSubmit)="fetchFormValue(user_name.value,user_email.value, user_password.value)">
+                <input type="text" #user_name  placeholder="Enter User name" required>
+                <input type="email" #user_email  placeholder="Enter email" required>
+                <input type="password" #user_password  placeholder="Enter password" required>
                 <input type="submit">
             </form>
         </div>

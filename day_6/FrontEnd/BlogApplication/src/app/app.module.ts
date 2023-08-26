@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,11 +23,12 @@ const routes: Routes = [
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    PostsComponent
+    PostsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     [RouterModule.forRoot(routes)]
   ],
   exports: [RouterModule],
