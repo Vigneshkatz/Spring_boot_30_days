@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginUser } from 'src/app/common/login-user';
+import { User } from 'src/app/common/user';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class BlogApiService {
 
   constructor(private http: HttpClient) { }
 
-  addUser(user: LoginUser): Observable<any> {
-    // Send a POST request with the user object in the request body
+  addUser(user: User): Observable<any> {
+    console.log(this.BASE_USER_REGISTER);
     return this.http.post(this.BASE_USER_REGISTER, user);
   }
 
