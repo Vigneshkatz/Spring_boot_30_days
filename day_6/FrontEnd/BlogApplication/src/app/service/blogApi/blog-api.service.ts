@@ -27,6 +27,11 @@ export class BlogApiService {
     console.log(this.http.get(url));
     return this.http.get(url);
   }
+  getUserById(id:number):Observable<any>{
+    const url = `${this.BASE_URL}/User/${id}`;
+    console.log(this.http.get(url));
+    return this.http.get(url);
+  }
 
   // POST SECTION
   // ADD USER
