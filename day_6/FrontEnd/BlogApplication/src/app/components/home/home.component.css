@@ -1,8 +1,4 @@
-#header .header_container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 #footer .footer_container {
     height: 10vh;
     display: flex;
@@ -27,7 +23,6 @@
 
 /* user posts  home page*/
 .post_container {
-    width: 100%;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -35,7 +30,6 @@
     margin: 0 auto;
     height: 100%;
     width: 100%;
-
 }
 
 .post {
@@ -44,12 +38,13 @@
     border-radius: 1rem;
     height: 17rem;
     padding: 0.25rem 1rem;
-    width: 16.5rem;
+    width: 14.5rem;
     box-sizing: border-box;
     transition: transform 0.3s ease-in-out;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
+    margin: auto;
 }
 
 .post:hover {

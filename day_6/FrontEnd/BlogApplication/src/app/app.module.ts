@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AddPostsComponent } from './components/add-posts/add-posts.component';
 import { DatePipe } from '@angular/common';
+import { AddCommentComponent } from './components/addComments/add-comment.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'addPost', component: AddPostsComponent },
+  { path: 'addComments', component: AddCommentComponent },
+
 ];
 
 @NgModule({
@@ -29,6 +32,7 @@ const routes: Routes = [
     HomeComponent,
     PostsComponent,
     AddPostsComponent,
+    AddCommentComponent,
   ],
   imports: [
     BrowserModule,

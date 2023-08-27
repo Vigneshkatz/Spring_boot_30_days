@@ -52,26 +52,3 @@ input[type="password"]{
     font-size: 1rem;
 
 }
-
-
-#footer .footer_container{
-    height: 10vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-}
-
-
-#footer .socialMedia ul {
-    display: flex;
-    gap: 1rem;
-    list-style: none;
-
-}
-
-#footer .socialMedia ul a{
-    color: black;
-    font-weight: 600;
-}

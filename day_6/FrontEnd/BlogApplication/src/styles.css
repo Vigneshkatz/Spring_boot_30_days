@@ -44,4 +44,51 @@ a:hover {
     color: #fff;
 }
 
+#header .header_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+#main {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 80vh;
+}
+
+#footer .footer_container {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+}
+
+#footer .socialMedia ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+}
+
+#footer .socialMedia ul a {
+    color: #8ab9eb;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+#footer .socialMedia ul a:hover {
+    color: #0056b3;
+}
+
+#footer .footer_copyright {
+    font-size: 14px;
+}
+
+#footer .footer_logo {
+    font-size: 20px;
+    font-weight: bold;
+}

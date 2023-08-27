@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Posts</title>
+</head>
+
+<body>
+    <header id="header">
+        <div class="header_container">
+            <div class="header_title">
+                <a routerLink="/home">
+                    <h1>Katz Blog</h1>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main id="main">
+        <div class="add_comment_container">
+            <h2 class="form_header">Add New comment</h2>
+            <form class="add_comment_form" (ngSubmit)="onSubmit()">
+                <label for="commentTitle">Enter Name</label>
+                <input type="text" id="commentTitle" name="title" placeholder="Enter Your Name" required [(ngModel)]="comment.name">
+
+                <label for="commentSummary">Enter Email</label>
+                <input type="email" id="commentSummary" name="summary" placeholder="Enter Email" required [(ngModel)]="comment.email">
+
+                <label for="commentContent">Enter Comment</label>
+                <textarea id="commentContent" name="content" placeholder="Enter comment" rows="6" required [(ngModel)]="comment.comment"></textarea>
+                <button type="submit">Add comment</button>
+            </form>
+        </div>
+    </main>
+    <footer id="footer">
+        <div class="footer_container">
+            <div class="footer_copyright">
+                <p>@Katziio</p>
+            </div>
+            <div class="socialMedia">
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/vignesh-m-145002254">linkedin</a></li>
+                    <li><a href="https://github.com/Vigneshkatz/KatzBookingApp">github</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

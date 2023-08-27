@@ -4,12 +4,12 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { LoginUser } from 'src/app/common/login-user';
 import { User } from 'src/app/common/user';
 import { Posts } from 'src/app/common/posts';
+import { Comment } from 'src/app/common/comment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogApiService {
-
   private BASE_USER_REGISTER = 'http://localhost:8000/User/addUser';
   private BASE_GET_USER = 'http://localhost:8000/User/getUser';
   private BASE_URL ="http://localhost:8000";
@@ -47,5 +47,21 @@ export class BlogApiService {
         return throwError('Error fetching posts.');
       })
     );
+  }
+
+  // COMMENT SECTION
+  addComment(comment: Comment) : Observable<Comment>{
+    const url = `${this.BASE_URL}/blogApi/1/addComments`;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+  
+    return this.http.post<Comment>(url, comment, httpOptions).pipe(
+      catchError((error) => {
+        console.error('Error adding comment:', error);
+        return throwError('Error adding comment.');
+      })
+    );
+  
   }
 }
