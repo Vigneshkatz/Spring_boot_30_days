@@ -1,47 +1,53 @@
-import { UserService } from './../../service/user/user.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HomeService } from 'src/app/service/home/home.service';
 import { Posts } from 'src/app/common/posts';
 import { User } from 'src/app/common/user';
-import { HomeService } from 'src/app/service/home/home.service';
+import { UserService } from 'src/app/service/user/user.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  public posts:Posts[]=[];
-  public user: User | null = null; 
-  constructor(private homeService:HomeService, private userService:UserService)
-  {
+export class HomeComponent implements OnInit {
+  public posts: Posts[] = [];
+  public user: User | null = null;
 
-  }
+  constructor(
+    private homeService: HomeService,
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
-    this.getUser();
+    this.route.queryParams.subscribe((params) => {
+      const userId = params['userId'];
+      if (userId) {
+        this.getUser(userId);
+      }
+    });
+
     this.getPostList();
   }
 
-  getPostList(){
-    this.homeService.getPostList().subscribe(
-      data => {
-        console.log(data);
-        this.posts = data;
-      }
-    );
+  getPostList() {
+    this.homeService.getPostList().subscribe((data) => {
+      console.log(data);
+      this.posts = data;
+    });
   }
-  getUser(){
-    console.log("calling getUser")
-    // this.userService.getUser();
-    this.userService.getUserById(7).subscribe(
-      data => {
+
+  getUser(userId: number) {
+    console.log('calling getUser');
+    this.userService.getUserById(userId).subscribe(
+      (data) => {
         console.log(data);
-        this.user = data; // Assign the fetched user data to the user property
+        this.user = data;
       },
-      error => {
+      (error) => {
         console.error('Error fetching user:', error);
       }
     );
   }
-  
 }
