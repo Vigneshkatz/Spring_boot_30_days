@@ -1,5 +1,6 @@
 package com.katziio.blog.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +22,10 @@ public class Comment {
     private String name;
     @Column(name = "comment_content")
     private String comment;
+//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private Date createdAt;
+
+//    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private Date updatedAt;
     @Column(name = "commenter_email")
     private String email;

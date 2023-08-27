@@ -21,21 +21,24 @@
     <main id="main">
         <div class="add_post_container">
             <h2 class="form_header">Add New Post</h2>
-            <form class="add_post_form">
-                <!-- (ngSubmit)="addPost(title.value, summary.value, content.value, author.value)"> -->
+            <form class="add_post_form" (ngSubmit)="onSubmit(postForm)">
                 <label for="postTitle">Enter Title</label>
-                <input type="text" id="postTitle" name="title" placeholder="Enter Post Title" required>
+                <input type="text" id="postTitle" name="title" placeholder="Enter Post Title" required
+                    [(ngModel)]="postForm.title">
 
                 <label for="postSummary">Enter Summary</label>
-                <input type="text" id="postSummary" name="summary" placeholder="Enter Post Summary" required>
+                <input type="text" id="postSummary" name="summary" placeholder="Enter Post Summary" required
+                    [(ngModel)]="postForm.excerpt">
 
                 <label for="postContent">Enter Content</label>
-                <textarea id="postContent" name="content" placeholder="Enter Post Content" rows="6" required></textarea>
+                <textarea id="postContent" name="content" placeholder="Enter Post Content" rows="6" required
+                    [(ngModel)]="postForm.content"></textarea>
 
                 <label for="postAuthor">Enter Author Name</label>
-                <input type="text" id="postAuthor" name="author" placeholder="Enter Author Name" required>
+                <input type="text" id="postAuthor" name="author" placeholder="Enter Author Name" required
+                    [(ngModel)]="postForm.author">
 
-                <input type="submit">
+                <button type="submit">Add Post</button>
             </form>
         </div>
     </main>

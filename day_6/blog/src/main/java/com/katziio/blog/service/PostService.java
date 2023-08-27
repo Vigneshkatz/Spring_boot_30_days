@@ -20,8 +20,6 @@ public class PostService {
     private PostRepository postRepository;
     @Autowired
     private UserRepository userRepository;
-    private boolean isSamplePost = true;
-
     @Autowired
     private CommentRepository commentRepository;
 
@@ -31,7 +29,6 @@ public class PostService {
             userOptional.get().getPosts().add(post);
             this.userRepository.save(userOptional.get());
             return true;
-
         }
         return false;
     }

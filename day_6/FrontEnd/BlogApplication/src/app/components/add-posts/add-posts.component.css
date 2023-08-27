@@ -65,7 +65,7 @@
     resize: vertical;
 }
 
-.add_post_form input[type="submit"] {
+.add_post_form button {
     background-color: #8ab9eb;
     color: #fff;
     border: none;
@@ -75,7 +75,7 @@
     font-weight: bold;
 }
 
-.add_post_form input[type="submit"]  :hover{
+.add_post_form button:hover{
     background-color: #0056b3;
 }
 

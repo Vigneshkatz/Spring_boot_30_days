@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AddPostsComponent } from './components/add-posts/add-posts.component';
+import { DatePipe } from '@angular/common';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -34,10 +35,11 @@ const routes: Routes = [
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    DatePipe,
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
