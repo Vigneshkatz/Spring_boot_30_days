@@ -1,0 +1,101 @@
+*,
+*::after,
+*::before {
+    padding: none;
+    ;
+    box-sizing: border-box;
+    margin: 0;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    list-style: none;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: black;
+}
+
+#header {
+    height: 10vh;
+    padding: 1rem;
+    border-bottom: 2px solid grey;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#main {
+    min-height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.add_post_container {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    border: 2px solid #ccc;
+    border-radius: 0.5rem;
+}
+.add_post_container h2{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.add_post_container{
+    width: 100%;
+    height: auto;
+}
+.add_post_form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.add_post_form label {
+    font-weight: bold;
+}
+
+.add_post_form input,
+.add_post_form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+}
+
+.add_post_form textarea {
+    resize: vertical;
+}
+
+.add_post_form input[type="submit"] {
+    background-color: #8ab9eb;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add_post_form input[type="submit"]  :hover{
+    background-color: #0056b3;
+}
+
+#footer .footer_container {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#footer .socialMedia ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+
+}
+
+#footer .socialMedia ul a{
+    color: black;
+    font-weight: 600;
+}
