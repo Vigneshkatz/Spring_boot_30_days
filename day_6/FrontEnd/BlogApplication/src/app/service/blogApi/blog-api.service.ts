@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { LoginUser } from 'src/app/common/login-user';
 import { User } from 'src/app/common/user';
 import { Posts } from 'src/app/common/posts';
@@ -28,8 +28,6 @@ export class BlogApiService {
     return this.http.get(url);
   }
 
-
-
   // POST SECTION
   // ADD USER
   addPost(post: Posts): Observable<any> {
@@ -39,5 +37,15 @@ export class BlogApiService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     return this.http.post(url, post, httpOptions);
+  }
+
+  getAllPost(): Observable<Posts[]> {
+    const url = `${this.BASE_URL}/blogApi/getPosts`;
+    return this.http.get<Posts[]>(url).pipe(
+      catchError((error) => {
+        console.error('Error fetching posts:', error);
+        return throwError('Error fetching posts.');
+      })
+    );
   }
 }

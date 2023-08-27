@@ -1,15 +1,47 @@
+
 *,
 *::after,
 *::before {
-    padding: none;
-    ;
-    box-sizing: border-box;
     margin: 0;
-    border: none;
+    padding: 0;
+    box-sizing: border-box;
     outline: none;
     text-decoration: none;
     list-style: none;
-    text-transform: capitalize;
-    /* font-weight: 600; */
-    color: black;
 }
+
+/* Global styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Header styling */
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    border-bottom: 1px solid #555;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#header h1 {
+    font-size: 24px;
+    color: #fff;
+}
+
+
