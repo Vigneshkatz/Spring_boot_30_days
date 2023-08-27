@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'addPost', component: AddPostsComponent },
   { path: 'addComment', component: AddCommentComponent },
+  { path: 'post/:id', component: PostsComponent }
 ];
 
 

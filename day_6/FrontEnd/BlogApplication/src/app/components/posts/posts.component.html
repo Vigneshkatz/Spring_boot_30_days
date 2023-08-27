@@ -23,26 +23,19 @@
         <div class="post_detail_container">
             <div class="post_header">
                 <div class="post_title">
-                    <h2>Sample Post Title</h2>
+                    <h2>{{post?.title}}</h2>
                 </div>
                 <div class="post_author">
                     <span class="author">
-                        <p>Author</p>
+                        <p>{{post?.author}}</p>
                     </span>
                 </div>
             </div>
-            <div class="post_excerpt">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius provident, voluptatem non debitis consequatur,
-                    architecto.</p>
+            <div class="post?_excerpt">
+                <p>{{post.excerpt}}</p>
             </div>
-            <div class="post_content">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet obcaecati iusto doloribus quis quo neque ea
-                    optio voluptas! Eius earum sunt fugiat tempore ratione qui aspernatur, vel officia corporis nisi!</p>
-                <hr>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, amet? Adipisci dicta exercitationem
-                    error cum, eveniet facilis accusamus, quas numquam dolorum, voluptatum veniam eligendi laborum libero
-                    ullam. Non, est alias?</p>
-                <!-- Add more content and separator lines as needed -->
+            <div class="post?_content">
+                {{post.excerpt}}
             </div>
         </div>
 
@@ -54,13 +47,15 @@
                 </div>
             </div>
             <div class="conmment_container">
-                <div class="comment">
-                    <div class="comment_author">Vigneshkatz</div>
+                <div class="comment" *ngFor="let comment of post?.comments">
+                    <div class="comment_author">
+                        {{comment.name}}
+                    </div>
                     <div class="comment_email">
-                        <p>vignesh000129@gmail</p>
+                        <p>{{comment.email}}</p>
                     </div>
                     <div class="comment_content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p>{{comment.comment}}</p>
                     </div>
                 </div>
             </div>

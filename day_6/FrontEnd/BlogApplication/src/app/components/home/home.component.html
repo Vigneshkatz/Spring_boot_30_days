@@ -29,7 +29,7 @@
     </header>
     <main id="main">
         <div class="post_container">
-            <a routerLink="/post" *ngFor="let post of posts">
+            <a routerLink="/post" *ngFor="let post of posts" [routerLink]="['/post', post.id]">
                 <div class="post">
                     <div class="post_title">
                         <p class="author">{{post.author}}</p>

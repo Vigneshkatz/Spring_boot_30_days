@@ -20,4 +20,9 @@ export class PostService {
       }
     });
   }
+
+  getPostById(postId: number): Observable<Posts> {
+    return this.apiService.getPostById(postId);
+  }
+  
 }
