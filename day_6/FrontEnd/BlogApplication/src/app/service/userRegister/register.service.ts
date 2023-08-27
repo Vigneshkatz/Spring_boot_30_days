@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/common/user';
 import { BlogApiService } from '../blogApi/blog-api.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,9 @@ export class RegisterService {
   constructor(private apiService: BlogApiService) {
     // this.loginUser = new LoginUser();
   }
-  register(user:User) {
+
+  register(user: User): Observable<User> {
     console.log(user);
-    this.apiService.addUser(user).subscribe({
-      next: (response: User) => {
-        console.log('Received User:', response);
-      },
-      error: (error) => {
-        console.error('Error fetching LoginUser:', error);
-      }
-    });
+    return this.apiService.addUser(user);
   }
 }

@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common'; // Remove DatePipe from here
 import { AddCommentComponent } from './components/addComments/add-comment.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route
   { path: 'home', component: HomeComponent },
   { path: 'post', component: PostsComponent },
   { path: 'login', component: LoginComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'addPost', component: AddPostsComponent },
   { path: 'addComment', component: AddCommentComponent },
 ];
+
 
 @NgModule({
   declarations: [
