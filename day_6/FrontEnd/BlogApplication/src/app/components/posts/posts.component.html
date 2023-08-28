@@ -27,14 +27,14 @@
                 </div>
                 <div class="post_author">
                     <span class="author">
-                        <p>{{post?.author}}</p>
+                        <p>{{post.author}}</p>
                     </span>
                 </div>
             </div>
-            <div class="post?_excerpt">
+            <div class="post_excerpt">
                 <p>{{post.excerpt}}</p>
             </div>
-            <div class="post?_content">
+            <div class="post_content">
                 {{post.excerpt}}
             </div>
         </div>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="conmment_container">
-                <div class="comment" *ngFor="let comment of post?.comments">
+                <div class="comment" *ngFor="let comment of comments">
                     <div class="comment_author">
                         {{comment.name}}
                     </div>

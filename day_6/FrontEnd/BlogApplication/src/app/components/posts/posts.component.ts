@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Comment } from 'src/app/common/comment';
 import { Posts } from 'src/app/common/posts';
+import { CommentService } from 'src/app/service/comment/comment.service';
 import { PostService } from 'src/app/service/post/post.service';
 
 @Component({
@@ -11,16 +13,24 @@ import { PostService } from 'src/app/service/post/post.service';
 export class PostsComponent {
   postId: number = 0;
   post!:Posts;
+  comments:Comment[]=[];
 
   constructor(private route: ActivatedRoute,
-    private postService:PostService) {}
+    private postService:PostService,private commentService:CommentService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.postId = +params['id']; // Convert to number
     });
     this.getPostDetails(this.postId);
-    
+    this.getComments(this.postId);
+  }
+  
+  getComments(postId: number):void {
+    this.commentService.getCommentList(postId).subscribe((data) => {
+      console.log(data);
+      this.comments = data;
+    });
   }
 
   getPostDetails(postId:number):void{

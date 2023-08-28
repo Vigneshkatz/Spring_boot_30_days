@@ -55,6 +55,17 @@ export class BlogApiService {
     );
   }
 
+  getPostById(postId: number): Observable<Posts> {
+    const url = `${this.BASE_URL}/blogApi/getPost/${postId}`;
+    return this.http.get<Posts>(url).pipe(
+      catchError((error) => {
+        console.error('Error adding comment:', error);
+        return throwError('Error adding comment.');
+      })
+    );
+  }
+
+
   // COMMENT SECTION
   addComment(comment: Comment): Observable<Comment> {
     const url = `${this.BASE_URL}/blogApi/1/addComments`;
@@ -70,13 +81,14 @@ export class BlogApiService {
     );
   }
 
-  getPostById(postId: number): Observable<Posts> {
-    const url = `${this.BASE_URL}/blogApi/getPost/${postId}`;
-    return this.http.get<Posts>(url).pipe(
+  getCommentsByPostId(postId: number): Observable<Comment[]> {
+    const url = `${this.BASE_URL}/blogApi/${postId}/getComments`;
+    return this.http.get<Comment[]>(url).pipe(
       catchError((error) => {
         console.error('Error adding comment:', error);
         return throwError('Error adding comment.');
       })
     );
   }
+
 }
