@@ -15,19 +15,23 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
-    @GetMapping("/postDetail/{postId}")
+    @GetMapping("/postsDetail/{postId}")
     public PostDetailedDTO getPostDetail(@PathVariable Long postId) {
-        return this.blogService.getPostDetail(postId);
+        return blogService.getPostDetail(postId);
     }
 
-    @PutMapping("/{postId}/Comment/{commentId}")
-    public CommentDTO updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestBody Comment comment) {
-        return this.blogService.updateComment(postId, comment, commentId);
+    @PutMapping("/posts/{postId}/comments/{commentId}")
+    public CommentDTO updateComment(
+            @PathVariable Long postId,
+            @PathVariable Long commentId,
+            @RequestBody Comment comment) {
+        return blogService.updateComment(postId, comment, commentId);
     }
 
-    @PutMapping("/post/{postId}")
-    public PostDetailedDTO updatePostById(@PathVariable Long postId, @RequestBody Post post){
-        return this.blogService.updatePostByID(postId,post);
-
+    @PutMapping("/posts/{postId}")
+    public PostDetailedDTO updatePostById(
+            @PathVariable Long postId,
+            @RequestBody Post post) {
+        return blogService.updatePostByID(postId, post);
     }
 }

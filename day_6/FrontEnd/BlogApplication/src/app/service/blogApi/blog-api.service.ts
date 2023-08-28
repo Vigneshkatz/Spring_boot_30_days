@@ -11,42 +11,43 @@ import { Comment } from 'src/app/common/comment';
 })
 export class BlogApiService {
 
-  private BASE_USER_REGISTER = 'http://localhost:8000/User/addUser';
-  private BASE_GET_USER = 'http://localhost:8000/User/getUser';
-  private BASE_URL = "http://localhost:8000";
+  private BASE_URL = "http://localhost:8000/blogApi";
 
   constructor(private http: HttpClient) { }
 
   // REGISTER USER
   addUser(user: User): Observable<any> {
-    console.log(this.BASE_USER_REGISTER);
-    return this.http.post(this.BASE_USER_REGISTER, user);
+    const url = `${this.BASE_URL}/users`;
+    return this.http.post(url, user);
   }
+
   // LOGIN USER
   getUser(loginUser: LoginUser): Observable<any> {
-    const url = `${this.BASE_GET_USER}?email=${encodeURIComponent(loginUser.email)}&password=${loginUser.password}`;
-    console.log(this.http.get(url));
-    return this.http.get(url);
+    const url = `${this.BASE_URL}/User/getUser`;
+    const params = {
+      email: loginUser.email,
+      password: loginUser.password
+    };
+    return this.http.get(url, { params });
   }
+
   getUserById(id: number): Observable<any> {
     const url = `${this.BASE_URL}/User/${id}`;
-    console.log(this.http.get(url));
     return this.http.get(url);
   }
 
   // POST SECTION
-  // ADD USER
+  // ADD POST
   addPost(post: Posts): Observable<any> {
-    console.log(JSON.stringify(post))
-    const url = `${this.BASE_URL}/blogApi/1/addPost`;
+    const url = `${this.BASE_URL}/1/addPost`;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     return this.http.post(url, post, httpOptions);
   }
 
-  getAllPost(): Observable<Posts[]> {
-    const url = `${this.BASE_URL}/blogApi/getPosts`;
+  getAllPosts(): Observable<Posts[]> {
+    const url = `${this.BASE_URL}/getPosts`;
     return this.http.get<Posts[]>(url).pipe(
       catchError((error) => {
         console.error('Error fetching posts:', error);
@@ -56,19 +57,18 @@ export class BlogApiService {
   }
 
   getPostById(postId: number): Observable<Posts> {
-    const url = `${this.BASE_URL}/blogApi/getPost/${postId}`;
+    const url = `${this.BASE_URL}/getPost/${postId}`;
     return this.http.get<Posts>(url).pipe(
       catchError((error) => {
-        console.error('Error adding comment:', error);
-        return throwError('Error adding comment.');
+        console.error('Error fetching post:', error);
+        return throwError('Error fetching post.');
       })
     );
   }
 
-
   // COMMENT SECTION
   addComment(comment: Comment): Observable<Comment> {
-    const url = `${this.BASE_URL}/blogApi/1/addComments`;
+    const url = `${this.BASE_URL}/1/addComments`;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -82,13 +82,13 @@ export class BlogApiService {
   }
 
   getCommentsByPostId(postId: number): Observable<Comment[]> {
-    const url = `${this.BASE_URL}/blogApi/${postId}/getComments`;
+    const url = `${this.BASE_URL}/${postId}/getComments`;
     return this.http.get<Comment[]>(url).pipe(
       catchError((error) => {
-        console.error('Error adding comment:', error);
-        return throwError('Error adding comment.');
+        console.error('Error fetching comments:', error);
+        return throwError('Error fetching comments.');
       })
     );
   }
-
 }
+

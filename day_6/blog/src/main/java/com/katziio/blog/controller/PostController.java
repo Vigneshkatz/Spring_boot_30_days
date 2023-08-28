@@ -1,6 +1,5 @@
 package com.katziio.blog.controller;
 
-
 import com.katziio.blog.dto.PostDTO;
 import com.katziio.blog.entity.Post;
 import com.katziio.blog.service.PostService;
@@ -19,9 +18,11 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @PostMapping("{userId}/addPost")
-    public ResponseEntity<Post> addPost(@PathVariable Long userId,@RequestBody Post post) {
-        boolean isPostAdded = postService.addPost(userId,post);
+    @PostMapping("/users/{userId}/posts")
+    public ResponseEntity<Post> addPost(
+            @PathVariable Long userId,
+            @RequestBody Post post) {
+        boolean isPostAdded = postService.addPost(userId, post);
         if (isPostAdded) {
             return ResponseEntity.ok(post);
         } else {
@@ -29,20 +30,18 @@ public class PostController {
         }
     }
 
-    @GetMapping("/getPosts")
+    @GetMapping("/posts")
     public List<Post> getPosts() {
-        return this.postService.getAllPosts();
+        return postService.getAllPosts();
     }
 
-    @GetMapping("/getPost/{postId}")
+    @GetMapping("/posts/{postId}")
     public PostDTO getPostById(@PathVariable Long postId) {
-        return this.postService.getPostById(postId);
+        return postService.getPostById(postId);
     }
 
-    @DeleteMapping("/deletePost/{postId}")
-    public PostDTO deletePostById(@PathVariable Long postId)
-    {
-        return this.postService.deletePostById(postId);
+    @DeleteMapping("/posts/{postId}")
+    public PostDTO deletePostById(@PathVariable Long postId) {
+        return postService.deletePostById(postId);
     }
-
 }

@@ -15,22 +15,20 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("/{postId}/getComments")
-    public List<CommentDTO> getComments(@PathVariable Long postId) {
-        return this.commentService.getCommentByPostID(postId);
+    @GetMapping("/posts/{postId}/comments")
+    public List<CommentDTO> getCommentsForPost(@PathVariable Long postId) {
+        return commentService.getCommentByPostID(postId);
     }
 
-    @PostMapping("/{postId}/addComments")
-    public CommentDTO getComments(@RequestBody Comment comment,@PathVariable Long postId) {
-        return this.commentService.addComment(postId,comment);
+    @PostMapping("/posts/{postId}/comments")
+    public CommentDTO addCommentToPost(
+            @RequestBody Comment comment,
+            @PathVariable Long postId) {
+        return commentService.addComment(postId, comment);
     }
 
-    @DeleteMapping("/Comment/{commentId}")
-    public CommentDTO deleteComment(@PathVariable Long commentId )
-    {
-        return this.commentService.deleteCommentById(commentId);
+    @DeleteMapping("/comments/{commentId}")
+    public CommentDTO deleteComment(@PathVariable Long commentId) {
+        return commentService.deleteCommentById(commentId);
     }
-
-
-
 }
