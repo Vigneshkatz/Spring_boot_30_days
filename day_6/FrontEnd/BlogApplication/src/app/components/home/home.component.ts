@@ -13,6 +13,7 @@ import { UserService } from 'src/app/service/user/user.service';
 export class HomeComponent implements OnInit {
   public posts: Posts[] = [];
   public user: User | null = null;
+  page: number = 1;
 
   constructor(
     private homeService: HomeService,
