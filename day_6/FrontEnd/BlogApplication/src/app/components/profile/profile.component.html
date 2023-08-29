@@ -26,7 +26,8 @@
     </header>
     <main id="main">
         <div class="post_container">
-            <a routerLink="/post" *ngFor="let post of posts" [routerLink]="['/post', post.id]">
+            <a *ngFor="let post of posts | paginate: { itemsPerPage: 10, currentPage: page }"
+            routerLink="/post/{{ post.id }}">
                 <div class="post">
                     <div class="post_title">
                         <p class="author">{{post.author}}</p>
@@ -45,6 +46,7 @@
                 </div>
             </a>
         </div>
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </main>
     <footer id="footer">
         <div class="footer_container">

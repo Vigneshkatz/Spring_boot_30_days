@@ -12,6 +12,7 @@ export class ProfileComponent {
 
   posts: Posts[]=[];
   userId:number=0;
+  page:number=1;
 
   constructor(private route: ActivatedRoute,
     private postService: PostService) { }
