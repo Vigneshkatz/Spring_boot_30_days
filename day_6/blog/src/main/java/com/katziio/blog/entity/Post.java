@@ -35,4 +35,8 @@ public class Post {
     @OneToMany(targetEntity = Comment.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_post_id", referencedColumnName = "id")
     private List<Comment> comments;
+
+    @OneToMany(targetEntity =Tag.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_post_tag_id", referencedColumnName = "id")
+    private List<Tag> tags;
 }

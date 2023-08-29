@@ -10,8 +10,7 @@ import { Comment } from 'src/app/common/comment';
   providedIn: 'root'
 })
 export class BlogApiService {
-
-  private BASE_URL = "http://localhost:8000/blogApi";
+  private BASE_URL = "http://localhost:8000";
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +22,7 @@ export class BlogApiService {
 
   // LOGIN USER
   getUser(loginUser: LoginUser): Observable<any> {
-    const url = `${this.BASE_URL}/User/getUser`;
+    const url = `${this.BASE_URL}/users/login`;
     const params = {
       email: loginUser.email,
       password: loginUser.password
@@ -31,15 +30,15 @@ export class BlogApiService {
     return this.http.get(url, { params });
   }
 
-  getUserById(id: number): Observable<any> {
-    const url = `${this.BASE_URL}/User/${id}`;
+  getUserById(userId: number): Observable<any> {
+    const url = `${this.BASE_URL}/users/${userId}`;
     return this.http.get(url);
   }
 
   // POST SECTION
   // ADD POST
-  addPost(post: Posts): Observable<any> {
-    const url = `${this.BASE_URL}/1/addPost`;
+  addPost(post: Posts,useId:number): Observable<any> {
+    const url = `${this.BASE_URL}/blogApi/users/${useId}/posts`;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -47,7 +46,7 @@ export class BlogApiService {
   }
 
   getAllPosts(): Observable<Posts[]> {
-    const url = `${this.BASE_URL}/getPosts`;
+    const url = `${this.BASE_URL}/blogApi/posts`;
     return this.http.get<Posts[]>(url).pipe(
       catchError((error) => {
         console.error('Error fetching posts:', error);
@@ -57,7 +56,7 @@ export class BlogApiService {
   }
 
   getPostById(postId: number): Observable<Posts> {
-    const url = `${this.BASE_URL}/getPost/${postId}`;
+    const url = `${this.BASE_URL}/blogApi/posts/${postId}`;
     return this.http.get<Posts>(url).pipe(
       catchError((error) => {
         console.error('Error fetching post:', error);
@@ -68,7 +67,7 @@ export class BlogApiService {
 
   // COMMENT SECTION
   addComment(comment: Comment): Observable<Comment> {
-    const url = `${this.BASE_URL}/1/addComments`;
+    const url = `${this.BASE_URL}/blogApi/posts/1/comments`;
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -82,7 +81,7 @@ export class BlogApiService {
   }
 
   getCommentsByPostId(postId: number): Observable<Comment[]> {
-    const url = `${this.BASE_URL}/${postId}/getComments`;
+    const url = `${this.BASE_URL}/blogApi/posts/${postId}/comments`;
     return this.http.get<Comment[]>(url).pipe(
       catchError((error) => {
         console.error('Error fetching comments:', error);
@@ -90,5 +89,16 @@ export class BlogApiService {
       })
     );
   }
+
+  getAllPostsByUserId(userId: number): Observable<Posts[]> {
+    const url = `${this.BASE_URL}/blogApi/${userId}/posts`;
+    return this.http.get<Posts[]>(url).pipe(
+      catchError((error) => {
+        console.error('Error fetching posts:', error);
+        return throwError('Error fetching posts.');
+      })
+    );
+  }
+
 }
 

@@ -40,6 +40,11 @@ public class PostController {
         return postService.getPostById(postId);
     }
 
+    @GetMapping("/{userId}/posts")
+    public List<PostDTO> getPostByUserId(@PathVariable Long userId) {
+        return postService.getPostByUserId(userId);
+    }
+
     @DeleteMapping("/posts/{postId}")
     public PostDTO deletePostById(@PathVariable Long postId) {
         return postService.deletePostById(postId);

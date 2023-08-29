@@ -12,6 +12,6 @@ export class HomeService {
   constructor(private blogApi:BlogApiService) { }
 
   getPostList(): Observable<Posts[]> {
-    return this.blogApi.getAllPost();
+    return this.blogApi.getAllPosts();
   }
 }

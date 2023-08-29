@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Posts } from 'src/app/common/posts';
 import { PostService } from 'src/app/service/post/post.service';
 
@@ -9,8 +10,9 @@ import { PostService } from 'src/app/service/post/post.service';
   styleUrls: ['./add-posts.component.css']
 })
 export class AddPostsComponent {
+  userId!:number;
   constructor(private datePipe: DatePipe,
-    private postService: PostService) { }
+    private postService: PostService,private route: ActivatedRoute) { }
   postForm: Posts = new Posts(
     0,
     '',
@@ -24,10 +26,26 @@ export class AddPostsComponent {
     []
   );
 
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.userId=+params['userId'];
+      console.log(params['userId']);
+      if (params['userId']) {
+        // Now you have the user's ID, you can use it for further actions
+        console.log('User ID:', +params['userId']);
+        // Perform any API calls or data fetching related to this user ID
+      } else {
+        console.log('User ID not provided in the route.');
+      }
+    });
+    ;
+  }
+
   onSubmit(form: any) {
     console.log(this.postForm);
     const formattedPublishedAt = this.datePipe.transform(this.postForm.published_at, 'yyyy-MM-dd HH:mm:ss');
     console.log('Formatted Published At:', formattedPublishedAt);
-    this.postService.addPost(this.postForm);
+    this.postService.addPost(this.postForm,this.userId);
   }
 }

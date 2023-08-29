@@ -15,22 +15,14 @@
                 <h1>Katz Blog</h1>
             </a>
         </div>
-        <div class="welcome_user">
-            <h1>Hi! {{ user?.name || 'Guest' }}</h1>
-        </div>
-        
+
         <div class="header_menu">
             <ul>
-                <li *ngIf="user?.name; else loginLink">
-                    <a [routerLink]="['/profile', user?.id]">Profile</a>
+                <li>
+                    <a routerLink="/addPost/{{userId}}">Add Posts</a>
                 </li>
-                <ng-template #loginLink>
-                    <li>
-                        <a routerLink="/login">Login</a>
-                    </li>
-                </ng-template>
             </ul>
-        </div>               
+        </div>
     </header>
     <main id="main">
         <div class="post_container">

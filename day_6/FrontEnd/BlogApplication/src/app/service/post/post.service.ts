@@ -8,10 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
 
-  constructor(private apiService: BlogApiService) { }
+
+  constructor(private blogApi: BlogApiService) { }
   
-  addPost(post: Posts): void {
-    this.apiService.addPost(post).subscribe({
+  addPost(post: Posts,userId:number): void {
+    this.blogApi.addPost(post,userId).subscribe({
       next: (response: Posts) => {
         console.log('Received LoginUser:', response);
       },
@@ -22,7 +23,11 @@ export class PostService {
   }
 
   getPostById(postId: number): Observable<Posts> {
-    return this.apiService.getPostById(postId);
+    return this.blogApi.getPostById(postId);
+  }
+
+  getPostByUserId(userId: number) :Observable<Posts[]> {
+    return this.blogApi.getAllPostsByUserId(userId);
   }
   
 }

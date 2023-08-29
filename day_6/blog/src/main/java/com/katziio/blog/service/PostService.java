@@ -54,4 +54,8 @@ public class PostService {
         }
         return postDTO;
     }
+
+    public List<PostDTO> getPostByUserId(Long userId) {
+        return this.postRepository.getPostByUserId(userId);
+    }
 }

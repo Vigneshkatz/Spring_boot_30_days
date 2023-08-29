@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddPostsComponent } from './components/add-posts/add-posts.component';
 import { DatePipe } from '@angular/common'; // Remove DatePipe from here
 import { AddCommentComponent } from './components/addComments/add-comment.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route
@@ -19,8 +20,9 @@ const routes: Routes = [
   { path: 'post', component: PostsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'addPost', component: AddPostsComponent },
+  { path: 'addPost/:userId', component: AddPostsComponent },
   { path: 'addComment', component: AddCommentComponent },
+  { path: 'profile/:userId', component: ProfileComponent },
   { path: 'post/:id', component: PostsComponent }
 ];
 
@@ -34,6 +36,7 @@ const routes: Routes = [
     PostsComponent,
     AddPostsComponent,
     AddCommentComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
