@@ -58,4 +58,8 @@ public class PostService {
     public List<PostDTO> getPostByUserId(Long userId) {
         return this.postRepository.getPostByUserId(userId);
     }
+
+    public List<PostDTO> getPostsBySortKey(String sortKey) {
+        return this.postRepository.sortPostByKey(sortKey);
+    }
 }

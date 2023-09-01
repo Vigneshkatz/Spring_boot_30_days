@@ -49,4 +49,12 @@ public class PostController {
     public PostDTO deletePostById(@PathVariable Long postId) {
         return postService.deletePostById(postId);
     }
+
+    @GetMapping("/posts/sortBy/{sortKey}")
+    public List<PostDTO> sortPostBySortKey(@PathVariable String sortKey)
+    {
+        return this.postService.getPostsBySortKey(sortKey);
+    }
+
+
 }

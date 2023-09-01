@@ -18,4 +18,24 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query("SELECT new com.katziio.blog.dto.PostDTO(p.id, p.title, p.excerpt, p.content, p.author, p.published_at, p.is_published, p.created_at, p.updated_at) FROM User u JOIN u.posts p WHERE u.id = :userId")
     List<PostDTO> getPostByUserId(@Param("userId") Long userId);
+
+    @Query("SELECT new com.katziio.blog.dto.PostDTO(p.id, p.title, p.excerpt, p.content, p.author, p.published_at, p.is_published, p.created_at, p.updated_at) " +
+            "FROM User u JOIN u.posts p ORDER BY " +
+            "CASE " +
+            "WHEN :sortKey = 'title' THEN p.title " +
+            "WHEN :sortKey = 'author' THEN p.author " +
+            "ELSE p.id "+
+            "END")
+    List<PostDTO> sortPostByKey(@Param("sortKey") String sortKey);
+
+
+//    search by tag
+
+//    sort by date
+
+//    sort by name
+
+//    sort by number of comment
+
+//
 }
