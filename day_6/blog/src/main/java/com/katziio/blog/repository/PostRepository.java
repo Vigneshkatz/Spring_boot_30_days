@@ -24,7 +24,9 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "CASE " +
             "WHEN :sortKey = 'title' THEN p.title " +
             "WHEN :sortKey = 'author' THEN p.author " +
-            "ELSE p.id "+
+            "WHEN :sortKey = 'published_' THEN CAST(p.published_at AS STRING) "+
+            "Else CAST(p.id AS STRING) " +
+//            "ELSE p.id "+
             "END")
     List<PostDTO> sortPostByKey(@Param("sortKey") String sortKey);
 
