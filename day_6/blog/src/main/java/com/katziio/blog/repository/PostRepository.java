@@ -26,10 +26,16 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "WHEN :sortKey = 'author' THEN p.author " +
             "WHEN :sortKey = 'published_' THEN CAST(p.published_at AS STRING) "+
             "Else CAST(p.id AS STRING) " +
-//            "ELSE p.id "+
             "END")
     List<PostDTO> sortPostByKey(@Param("sortKey") String sortKey);
-
+    @Query("SELECT new com.katziio.blog.dto.PostDTO(p.id, p.title, p.excerpt, p.content, p.author, p.published_at, p.is_published, p.created_at, p.updated_at) " +
+            "FROM User u JOIN u.posts p WHERE " +
+            "CASE " +
+            "WHEN :filterKey = 'title' THEN p.title = :filterValue " +
+            "WHEN :filterKey = 'author' THEN p.author = :filterValue " +
+            "ELse CAST(p.published_at AS STRING) = :filterValue "+
+            "END")
+    List<PostDTO> filterPostByKey(@Param("filterKey") String key,@Param("filterValue") String filterValue);
 
 //    search by tag
 

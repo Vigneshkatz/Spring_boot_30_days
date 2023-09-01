@@ -55,6 +55,9 @@ public class PostController {
     {
         return this.postService.getPostsBySortKey(sortKey);
     }
-
-
+    @GetMapping("/posts/filterBy/{filterKey}")
+    public List<PostDTO> filterPostBySortKey(@PathVariable String filterKey, @RequestParam String value)
+    {
+        return this.postService.filterPostBy(filterKey,value);
+    }
 }

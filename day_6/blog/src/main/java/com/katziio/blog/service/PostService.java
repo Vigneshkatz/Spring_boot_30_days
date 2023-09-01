@@ -62,4 +62,9 @@ public class PostService {
     public List<PostDTO> getPostsBySortKey(String sortKey) {
         return this.postRepository.sortPostByKey(sortKey);
     }
+
+    public List<PostDTO> filterPostBy(String filterKey, String value) {
+
+        return this.postRepository.filterPostByKey(filterKey,value);
+    }
 }
