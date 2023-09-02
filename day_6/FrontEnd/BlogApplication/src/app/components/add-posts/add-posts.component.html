@@ -37,7 +37,9 @@
                 <label for="postAuthor">Enter Author Name</label>
                 <input type="text" id="postAuthor" name="author" placeholder="Enter Author Name" required
                     [(ngModel)]="postForm.author">
-
+                
+                    <label for="postAuthor">Enter Author Name</label>
+                <input type="text" [(ngModel)]="tagInput" name="tags" placeholder="Enter tags">
                 <button type="submit">Add Post</button>
             </form>
         </div>

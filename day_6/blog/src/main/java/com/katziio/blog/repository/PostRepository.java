@@ -36,14 +36,4 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "ELse CAST(p.published_at AS STRING) = :filterValue "+
             "END")
     List<PostDTO> filterPostByKey(@Param("filterKey") String key,@Param("filterValue") String filterValue);
-
-//    search by tag
-
-//    sort by date
-
-//    sort by name
-
-//    sort by number of comment
-
-//
 }

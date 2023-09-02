@@ -10,7 +10,8 @@ export class Posts {
         public is_published: Date,
         public created_at: Date,
         public updated_at: Date,
-        public comments:Comment[]) {
+        public comments:Comment[],
+        ) {
 
     }
 

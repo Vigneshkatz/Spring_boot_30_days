@@ -1,0 +1,20 @@
+.tags_form{
+    border: 2px solid red;
+    width: 20rem;
+}
+.tags_form form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tags_form form input{
+    height: 2rem;
+    font-size: 1.2rem;
+}
+
+.tags_form form button{
+    width: 60%;
+    margin: auto;
+    height: 2rem;
+}

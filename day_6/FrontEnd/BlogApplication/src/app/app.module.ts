@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common'; // Remove DatePipe from here
 import { AddCommentComponent } from './components/addComments/add-comment.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TagsComponent } from './components/tags/tags.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'addPost/:userId', component: AddPostsComponent },
   { path: 'addComment', component: AddCommentComponent },
   { path: 'profile/:userId', component: ProfileComponent },
-  { path: 'post/:id', component: PostsComponent }
+  { path: 'post/:id', component: PostsComponent },
+  { path: 'tags', component: TagsComponent },
 ];
 
 
@@ -38,6 +40,7 @@ const routes: Routes = [
     AddPostsComponent,
     AddCommentComponent,
     ProfileComponent,
+    TagsComponent,
   ],
   imports: [
     BrowserModule,

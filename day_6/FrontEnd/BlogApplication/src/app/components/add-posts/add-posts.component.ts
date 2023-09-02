@@ -25,6 +25,7 @@ export class AddPostsComponent {
     new Date(),
     []
   );
+  tagInput: string = '';
 
 
   ngOnInit(): void {
@@ -32,9 +33,7 @@ export class AddPostsComponent {
       this.userId=+params['userId'];
       console.log(params['userId']);
       if (params['userId']) {
-        // Now you have the user's ID, you can use it for further actions
         console.log('User ID:', +params['userId']);
-        // Perform any API calls or data fetching related to this user ID
       } else {
         console.log('User ID not provided in the route.');
       }
