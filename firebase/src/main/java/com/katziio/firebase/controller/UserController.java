@@ -13,6 +13,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // TODO: 05/09/23 exception handiling 
+
     @PostMapping("/create")
     public String createUser(@RequestBody User user) throws Exception{
         return this.userService.createUser(user);
