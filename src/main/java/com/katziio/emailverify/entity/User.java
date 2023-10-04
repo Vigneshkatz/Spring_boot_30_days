@@ -1,24 +1,27 @@
 package com.katziio.emailverify.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.*;
-import java.security.SecureRandom;
 
 @Data
 @Entity
+@Table(name = "users",uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @NotEmpty
+    @Column(unique = true)
     private String username;
+
     @Email
+    @Column(unique = true)
+    @NotEmpty
     private String email;
-    @Size(min = 8)
+    @Pattern(regexp = "^(?=.*?[A-Z])(?:(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\\]{},.<>+=])|(?=.*?[a-z])(?:(?=.*?[0-9])|(?=.*?[-!@#$%^&*()_[\\]{},.<>+=]))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%^&*()_[\\]{},.<>+=]))[A-Za-z0-9!@#$%^&*()_[\\]{},.<>+=-]{7,50}$")
     private String password;
 
     private boolean isActive;
