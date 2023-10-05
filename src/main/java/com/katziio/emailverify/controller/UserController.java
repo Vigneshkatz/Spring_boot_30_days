@@ -13,16 +13,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/addUser")
-    public User saveUser(@RequestBody User user)
-    {
+    public User saveUser(@RequestBody User user) {
         user.setActive(false);
+        System.out.println(user.getEmail());
         return this.userService.saveUser(user);
-
     }
 
-    @PostMapping("/verifyUser/{token}")
-    public User verifyUser(@PathVariable String token) {
-        return  this.userService.verifyUser(token);
+    @PostMapping("/confirm-account")
+    public User confirmUserAccount(@RequestParam("token") String confirmationToken) {
+        return this.userService.verifyAccount(confirmationToken);
     }
 
 }
