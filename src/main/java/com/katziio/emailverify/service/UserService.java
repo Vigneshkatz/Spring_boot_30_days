@@ -31,15 +31,7 @@ public class UserService {
 
             confirmationTokenRepository.save(confirmationToken);
             System.out.println(4);
-            SimpleMailMessage mailMessage = new SimpleMailMessage();
-            System.out.println(5);
-            mailMessage.setTo(user.getEmail());
-            mailMessage.setSubject("Complete Registration!");
-            mailMessage.setFrom("sanvignesh7890@gmail.com");
-            mailMessage.setText("To confirm your account, please click here : "
-                    +"http://localhost:8000/confirm-account?token="+confirmationToken.getConfirmationToken());
-            System.out.println(6);
-            emailSenderService.sendEmail(mailMessage);
+            this.emailSenderService.initiateEmail(confirmationToken.getConfirmationToken(),user.getEmail());
             System.out.println(7);
             System.out.println("successfulRegistration");
             return this.userRepository.save(user);
@@ -54,8 +46,8 @@ public class UserService {
             User user = userRepository.findByEmail(dbToken.getUser().getEmail());
             user.setActive(true);
             userRepository.save(user);
+            System.out.println("heibfdsvbisuhv");
             return user;
-
         } else {
             return null;
         }

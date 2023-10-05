@@ -20,4 +20,17 @@ public class EmailSenderService {
     public void sendEmail(SimpleMailMessage email) {
         javaMailSender.send(email);
     }
+
+    public void initiateEmail(String confirmationToken,String toEmail)
+    {
+        System.out.println(5);
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(toEmail);
+        mailMessage.setSubject("Complete Registration!");
+        mailMessage.setFrom("sanvignesh7890@gmail.com");
+        mailMessage.setText("To confirm your account, please click here : "
+                +"http://localhost:8000/v1/confirm-account/"+confirmationToken);
+        System.out.println(6);
+       this.sendEmail(mailMessage);
+    }
 }

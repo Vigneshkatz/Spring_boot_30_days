@@ -19,8 +19,9 @@ public class UserController {
         return this.userService.saveUser(user);
     }
 
-    @PostMapping("/confirm-account")
-    public User confirmUserAccount(@RequestParam("token") String confirmationToken) {
+    @PostMapping("/confirm-account/{token}")
+    public User confirmUserAccount(@PathVariable("token") String confirmationToken) {
+        System.out.println("confirmUser");
         return this.userService.verifyAccount(confirmationToken);
     }
 
