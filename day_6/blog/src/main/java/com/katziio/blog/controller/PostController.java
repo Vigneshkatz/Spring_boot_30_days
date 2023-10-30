@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/blogApi")
@@ -59,5 +61,23 @@ public class PostController {
     public List<PostDTO> filterPostBySortKey(@PathVariable String filterKey, @RequestParam String value)
     {
         return this.postService.filterPostBy(filterKey,value);
+    }
+
+    @GetMapping("/post/getAuthors")
+    public Set<String> getAuthorNames()
+    {
+        return this.postService.getAuthorNameList();
+    }
+
+    @GetMapping("/post/getDates")
+    public Set<Date> getDates()
+    {
+        return this.postService.getDateList();
+    }
+
+    @GetMapping("/post/getTags")
+    public Set<String> getTags()
+    {
+        return this.postService.getTagNameList();
     }
 }

@@ -39,7 +39,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "END")
     List<PostDTO> filterPostByKey(@Param("filterKey") String key,@Param("filterValue") String filterValue);
 
-    @Query("SELECT p FROM Post p WHERE p.author IN :authors AND p.publishedDate = :publishedDate AND p.tags IN :tags")
+    @Query("SELECT p FROM Post p WHERE p.author IN :authors AND p.published_at = :publishedDate AND p.tags IN :tags")
     List<Post> findPostsByAuthorsAndPublishedDateAndTags(
             @Param("authors") List<String> authors,
             @Param("publishedDate") Date publishedDate,
