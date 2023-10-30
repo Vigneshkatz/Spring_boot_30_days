@@ -80,4 +80,10 @@ public class PostController {
     {
         return this.postService.getTagNameList();
     }
+
+    @GetMapping("/posts/filter")
+    public List<Post> getPostByFilter()
+    {
+        return this.postService.filterPost();
+    }
 }

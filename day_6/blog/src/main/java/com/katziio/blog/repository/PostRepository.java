@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
@@ -39,10 +40,10 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "END")
     List<PostDTO> filterPostByKey(@Param("filterKey") String key,@Param("filterValue") String filterValue);
 
-    @Query("SELECT p FROM Post p WHERE p.author IN :authors AND p.published_at = :publishedDate AND p.tags IN :tags")
+    @Query("SELECT p FROM Post p WHERE p.author IN :authors AND p.published_at IN :publishedDate AND p.tags.name IN :tags")
     List<Post> findPostsByAuthorsAndPublishedDateAndTags(
-            @Param("authors") List<String> authors,
-            @Param("publishedDate") Date publishedDate,
-            @Param("tags") List<Tag> tags
+            @Param("authors") Set<String> authors,
+            @Param("publishedDate") Set<Date> publishedDate,
+            @Param("tags") Set<String> tags
     );
 }

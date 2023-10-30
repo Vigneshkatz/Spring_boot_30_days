@@ -101,4 +101,10 @@ public class PostService {
         return dateLists;
     }
 
+    public List<Post> filterPost() {
+        Set<String> authorNameList = this.getAuthorNameList();
+        Set<String> tagNameList = this.getTagNameList();
+        Set<Date> dateList = this.getDateList();
+        return this.postRepository.findPostsByAuthorsAndPublishedDateAndTags(authorNameList,dateList,tagNameList);
+    }
 }
