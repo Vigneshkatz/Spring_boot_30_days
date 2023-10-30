@@ -3,16 +3,16 @@ package com.katziio.blog.service;
 import com.katziio.blog.dto.PostDTO;
 import com.katziio.blog.entity.Comment;
 import com.katziio.blog.entity.Post;
+import com.katziio.blog.entity.Tag;
 import com.katziio.blog.entity.User;
 import com.katziio.blog.repository.CommentRepository;
 import com.katziio.blog.repository.PostRepository;
+import com.katziio.blog.repository.TagRepository;
 import com.katziio.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PostService {
@@ -22,6 +22,9 @@ public class PostService {
     private UserRepository userRepository;
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private TagRepository tagRepository;
 
     public boolean addPost(Long userId, Post post) {
         Optional<User> userOptional = this.userRepository.findById(userId);
@@ -67,4 +70,35 @@ public class PostService {
 
         return this.postRepository.filterPostByKey(filterKey,value);
     }
+
+    public Set<String> getTagNameList(){
+        List<Tag> tags = this.tagRepository.findAll();
+        Set<String> tagList = new HashSet<>();
+        for (Tag tag:tags)
+        {
+            tagList.add(tag.getName());
+        }
+        return tagList;
+    }
+
+    public Set<String> getAuthorNameList(){
+        List<Post> posts = this.postRepository.findAll();
+        Set<String> authorNameList = new HashSet<>();
+        for (Post post : posts)
+        {
+           authorNameList.add(post.getAuthor());
+        }
+        return authorNameList;
+    }
+
+    public Set<Date> getDateList(){
+        List<Post> posts = this.postRepository.findAll();
+        Set<Date> dateLists = new HashSet<>();
+        for (Post post : posts)
+        {
+            dateLists.add(post.getCreated_at());
+        }
+        return dateLists;
+    }
+
 }
