@@ -3,11 +3,13 @@ package com.katziio.blog.repository;
 import com.katziio.blog.dto.CommentDTO;
 import com.katziio.blog.dto.PostDTO;
 import com.katziio.blog.entity.Post;
+import com.katziio.blog.entity.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -36,4 +38,11 @@ public interface PostRepository extends JpaRepository<Post, Long> {
             "ELse CAST(p.published_at AS STRING) = :filterValue "+
             "END")
     List<PostDTO> filterPostByKey(@Param("filterKey") String key,@Param("filterValue") String filterValue);
+
+    @Query("SELECT p FROM Post p WHERE p.author IN :authors AND p.publishedDate = :publishedDate AND p.tags IN :tags")
+    List<Post> findPostsByAuthorsAndPublishedDateAndTags(
+            @Param("authors") List<String> authors,
+            @Param("publishedDate") Date publishedDate,
+            @Param("tags") List<Tag> tags
+    );
 }
