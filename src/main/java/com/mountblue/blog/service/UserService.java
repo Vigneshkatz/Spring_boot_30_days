@@ -3,14 +3,12 @@ package com.mountblue.blog.service;
 import com.mountblue.blog.Util.Role;
 //import com.mountblue.blog.config.Security;
 import com.mountblue.blog.entity.User;
-import com.mountblue.blog.model.PostDto;
 import com.mountblue.blog.model.UserDto;
 import com.mountblue.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
