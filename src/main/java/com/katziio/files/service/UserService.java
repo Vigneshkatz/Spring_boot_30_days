@@ -35,4 +35,7 @@ public class UserService {
     public void writeEmployeesToCsv(PrintWriter writer) {
         CSVHelper.writeEmployeesToCsv(writer,userRepository.findAll());
     }
+    public void writeEmployeesToCsvCustom(PrintWriter writer,List<String> headerList) {
+        CSVHelper.writeEmployeesToCsvCustom(writer,userRepository.findAll(),headerList);
+    }
 }

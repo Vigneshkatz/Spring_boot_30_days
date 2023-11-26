@@ -15,7 +15,7 @@ public class CSVHelper {
 
     public static String TYPE = "text/csv";
 
-    static String[] HEADERS = { "userId", "name", "email", "password","place","pincode","area","landmark","city","state","phoneNumber" };
+    static String[] HEADERS = {"userId", "name", "email", "password", "place", "pincode", "area", "landmark", "city", "state", "phoneNumber"};
 
     public static boolean hasCSVFormat(MultipartFile file) {
 
@@ -58,18 +58,70 @@ public class CSVHelper {
         }
     }
 
-    public static void writeEmployeesToCsv(Writer writer,List<User> userList) {
-
-//        List<User> employees = User.findAll();
+    public static void writeEmployeesToCsv(Writer writer, List<User> userList) {
         try (CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT)) {
-            csvPrinter.printRecord( "userId", "name", "email", "password","place","pincode","area","landmark","city","state","phoneNumber" );
+            csvPrinter.printRecord("userId", "name", "email", "password", "place", "pincode", "area", "landmark", "city", "state", "phoneNumber");
             for (User user : userList) {
                 csvPrinter.printRecord(user.getUserId(), user.getName(), user.getEmail(), user.getPassword(),
-                        user.getPlace(),user.getPincode(),user.getArea(),user.getLandmark(),user.getCity(),user.getState(),user.getPhoneNumber());
+                        user.getPlace(), user.getPincode(), user.getArea(), user.getLandmark(), user.getCity(), user.getState(), user.getPhoneNumber());
             }
         } catch (IOException e) {
-            throw new RuntimeException ("Error While writing CSV ", e);
+            throw new RuntimeException("Error While writing CSV ", e);
         }
     }
 
+    public static void writeEmployeesToCsvCustom(PrintWriter writer, List<User> userList, List<String> headerList) {
+        try (CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT)) {
+            csvPrinter.printRecord(headerList.toArray());
+
+            for (User user : userList) {
+                List<String> userData = new ArrayList<>();
+
+                for (String field : headerList) {
+                    switch (field.toLowerCase()) {
+                        case "userid":
+                            userData.add(String.valueOf(user.getUserId()));
+                            break;
+                        case "name":
+                            userData.add(user.getName());
+                            break;
+                        case "email":
+                            userData.add(user.getEmail());
+                            break;
+                        case "password":
+                            userData.add(user.getPassword());
+                            break;
+                        case "place":
+                            userData.add(user.getPlace());
+                            break;
+                        case "pincode":
+                            userData.add(String.valueOf(user.getPincode()));
+                            break;
+                        case "area":
+                            userData.add(user.getArea());
+                            break;
+                        case "landmark":
+                            userData.add(user.getLandmark());
+                            break;
+                        case "city":
+                            userData.add(user.getCity());
+                            break;
+                        case "state":
+                            userData.add(user.getState());
+                            break;
+                        case "phonenumber":
+                            userData.add(String.valueOf(user.getPhoneNumber()));
+                            break;
+                        default:
+                            userData.add("");
+                            break;
+                    }
+                }
+
+                csvPrinter.printRecord(userData);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error while writing CSV", e);
+        }
+    }
 }

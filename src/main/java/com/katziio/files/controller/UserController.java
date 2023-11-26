@@ -23,11 +23,18 @@ public class UserController {
         return this.userService.readFile(file);
     }
 
-    @RequestMapping(path = "/employees")
+    @GetMapping("/file")
     public void getAllEmployeesInCsv(HttpServletResponse servletResponse) throws IOException {
         servletResponse.setContentType("text/csv");
-        servletResponse.addHeader("Content-Disposition","attachment; filename=\"employees.csv\"");
+        servletResponse.addHeader("Content-Disposition","attachment; filename=\"user.csv\"");
         userService.writeEmployeesToCsv(servletResponse.getWriter());
+    }
+
+    @GetMapping("/file/choice")
+    public void getAllEmployeesInCsv(HttpServletResponse servletResponse,@RequestBody List<String> headerList) throws IOException {
+        servletResponse.setContentType("text/csv");
+        servletResponse.addHeader("Content-Disposition","attachment; filename=\"user.csv\"");
+        userService.writeEmployeesToCsvCustom(servletResponse.getWriter(),headerList);
     }
 
 
